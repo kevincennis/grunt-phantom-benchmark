@@ -24,63 +24,41 @@ In your project's Gruntfile, add a section named `phantom_benchmark` to the data
 
 ```js
 grunt.initConfig({
-  phantom_benchmark: {
+  benchmark: {
     options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+      root: 'path/to/benchmark/directory',
+      inject: [
+        'required/script.js',
+        'another/required/script'
+      ],
+      html: 'path/to/markup.html'
+    }
 });
 ```
 
 ### Options
 
-#### options.separator
+#### options.root
 Type: `String`
-Default value: `',  '`
 
-A string value that is used to do something with whatever.
+Path to the directory where your benchmark files live. This can contain any number of nested subdirectories.
 
-#### options.punctuation
+#### options.inject
+Type: `Array`
+
+An array of JS files that should be injected into the PhantomJS instance. These are not your benchmark tests,
+but rather things like jQuery or other libraries.
+
+#### options.html
 Type: `String`
-Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
+Path to your benchmark HTML file. This will probably just be an empty HTML document with nothing inside of it.
 
-### Usage Examples
+*NOTE*: It seems like Phantom will bail here if your HTML document doesn't have a script tag inside of it. I don't know why. But including an JS comment inside of a script tag on the page seemed to fix it. Whatevs.
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+### Usage
 
-```js
-grunt.initConfig({
-  phantom_benchmark: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  phantom_benchmark: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
+Files inside your `options.root` directory will have access to a `benchmark.js` `Suite` object with the name `suite`. So you can call `suite.add( name, fn )` or whatever you want to do with `benchmark.js`. Don't forget to call `suite.run()` at the end of your benchmark files.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
