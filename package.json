@@ -1,11 +1,15 @@
 {
   "name": "grunt-phantom-benchmark",
   "description": "Grunt plugin for running benchmarks in PhantomJS",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/kevincennis/grunt-phantom-benchmark",
   "author": {
-    "name": "Kevin Ennis",
+    "name": "Kevin Ennis <kevincennis>",
     "email": "kennis84@gmail.com"
+  },
+  "contributors": {
+    "name": "Art Lawry",
+    "github": "artlawry"
   },
   "repository": {
     "type": "git",
