@@ -11,6 +11,7 @@
 module.exports = function( grunt ) {
 
   var phantomjs = require('grunt-lib-phantomjs').init( grunt ),
+    path = require('path'),
     fs = require('fs');
 
   // pass console logs from phantom through to the terminal
@@ -36,21 +37,21 @@ module.exports = function( grunt ) {
   // register the benchmark task
   grunt.registerTask( 'benchmark', 'Benchmarks directories or files',
     function( pattern ) {
-    var path, done = this.async(), options, files;
+    var pathname, done = this.async(), options, files;
 
     options = this.options({
       inject: []
     });
 
     options.inject = ([
-      '../node_modules/lodash/dist/lodash.js',
-      '../node_modules/benchmark/benchmark.js',
-      './scripts/setup.js'
+      path.join( __dirname, '..', '/node_modules/lodash/dist/lodash.js' ),
+      path.join( __dirname, '..', '/node_modules/benchmark/benchmark.js' ),
+      path.join( __dirname,'scripts/setup.js' )
     ]).concat( options.inject );
 
-    path = options.root;
+    pathname = options.root;
     pattern = pattern || '**/*.js';
-    pattern = path + '/' + pattern;
+    pattern = pathname + '/' + pattern;
     pattern = pattern.replace( /\*+$/, '**/*.js' );
     if ( !/\.js/.test( pattern ) ) {
       files = grunt.file.expand( pattern.replace( /\/?$/, '/**/*.js' ) );
@@ -81,6 +82,7 @@ module.exports = function( grunt ) {
         });
       },
       function() {
+        console.log('zdgln');
         done();
       });
     }
