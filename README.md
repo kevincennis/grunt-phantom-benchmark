@@ -20,7 +20,7 @@ grunt.loadNpmTasks('grunt-phantom-benchmark');
 ## The "phantom_benchmark" task
 
 ### Overview
-In your project's Gruntfile, add a section named `phantom_benchmark` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `benchmark` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
