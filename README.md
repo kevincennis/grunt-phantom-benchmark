@@ -60,6 +60,8 @@ Path to your benchmark HTML file. This will probably just be an empty HTML docum
 
 Files inside your `options.root` directory will have access to a `benchmark.js` `Suite` object with the name `suite`. So you can call `suite.add( name, fn )` or whatever you want to do with `benchmark.js`. Don't forget to call `suite.run()` at the end of your benchmark files.
 
+To run it, just use `grunt benchmark` to run all files, or `grunt benchmark:path/to/files` to run benchmarks in specific files or directories. Results will be logged to your console.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
