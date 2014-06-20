@@ -82,7 +82,6 @@ module.exports = function( grunt ) {
         });
       },
       function() {
-        console.log('zdgln');
         done();
       });
     }
