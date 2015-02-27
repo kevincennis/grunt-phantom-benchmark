@@ -44,8 +44,8 @@ module.exports = function( grunt ) {
     });
 
     options.inject = ([
-      path.join( __dirname, '..', '/node_modules/lodash/dist/lodash.js' ),
-      path.join( __dirname, '..', '/node_modules/benchmark/benchmark.js' ),
+      require.resolve('lodash'),
+      require.resolve('benchmark'),
       path.join( __dirname,'scripts/setup.js' )
     ]).concat( options.inject );
 
